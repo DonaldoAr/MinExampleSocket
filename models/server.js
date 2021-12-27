@@ -6,7 +6,6 @@ const { SocketAddress } = require('net');
 
 
 class Server {
-
     constructor() {
         this.app   = express();
         this.port  = process.env.PORT;
@@ -76,6 +75,10 @@ class Server {
             socket.on('disconnect', ()=>{
                 console.log("Client disconect");
             });
+
+            socket.on('enviar-mensaje', ( payload)=>{
+                console.log(payload);
+            })
         });
     }
 
@@ -88,8 +91,5 @@ class Server {
     }
 
 }
-
-
-
 
 module.exports = Server;

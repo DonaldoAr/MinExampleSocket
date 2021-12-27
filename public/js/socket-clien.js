@@ -7,6 +7,9 @@ console.log("Hola mundo");
 const lblOnline = document.querySelector('#lblOnline');
 const lblOffline = document.querySelector('#lblOffline');
 
+const txtMensaje = document.querySelector('#txtMensaje');
+const btnEnviar = document.querySelector('#btnEnviar');
+
 // AQUI TENEMOS QUE CONECTARNOS A LOS SOCKETS
 const socket = io();
 // listers or observables que escuchan
@@ -21,4 +24,21 @@ socket.on('connect',()=>{
 // EVENTO DE DESCONEXION CON EL SERVIDOR
 socket.on('disconnect',()=>{
     console.log("Disconnect of server");
+    lblOffline.style.display = '';
+    lblOnline.style.display = 'none';
+});
+
+// LA MAYORIA DE LOS EVENTOS "ON" SON PARA ESCUCHAR,
+// PERO LOS "emit" QUE SON PARA EMITIR UN EVENTO
+btnEnviar.addEventListener('click',()=>{
+    const mensaje = txtMensaje.value;
+    // console.log(mensaje);
+    // ES RECOMENDABLE NO USAR CAMMEL_CASE NI CARACTERES ESPECIALES
+    // socket.emit('enviar-mensaje', mensaje);
+    const payload = {
+        mensaje,
+        id: '123abc',
+        fecha: new Date().getTime()
+    }
+    socket.emit('enviar-mensaje',payload)
 });
