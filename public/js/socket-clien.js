@@ -1,4 +1,3 @@
-console.log("Hola mundo");
 
 // REFERENCIAS DEL HTML
 // const lblOnline = document.getElementById("lblOnline");
@@ -15,7 +14,7 @@ const socket = io();
 // listers or observables que escuchan
 // ESTE LISTENER AYUDA A SABER SI ESTA CONECTADO AL SERVIDOR
 socket.on('connect',()=>{
-    console.log("Conectado");
+    // console.log("Conectado");
     
     lblOffline.style.display = 'none';
     lblOnline.style.display = '';
@@ -27,6 +26,10 @@ socket.on('disconnect',()=>{
     lblOffline.style.display = '';
     lblOnline.style.display = 'none';
 });
+
+socket.on('enviar-mensaje', (payload)=>{
+    console.log(payload);
+})
 
 // LA MAYORIA DE LOS EVENTOS "ON" SON PARA ESCUCHAR,
 // PERO LOS "emit" QUE SON PARA EMITIR UN EVENTO

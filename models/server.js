@@ -68,16 +68,16 @@ class Server {
 
     sockets(){
         this.io.on('connection', socket=>{
-            // console.log("Cliente conectado");
             // LOS SOCKETS TIENEN TAMBIEN TIENE UN ID DE IDENTIFICACION
-            console.log("Cliente conectado", socket.id);
+            // console.log("Cliente conectado", socket.id);
 
             socket.on('disconnect', ()=>{
                 console.log("Client disconect");
             });
 
             socket.on('enviar-mensaje', ( payload)=>{
-                console.log(payload);
+                // console.log(payload); // Ok
+                this.io.emit('enviar-mensaje', payload)
             })
         });
     }
