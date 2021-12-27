@@ -43,5 +43,8 @@ btnEnviar.addEventListener('click',()=>{
         id: '123abc',
         fecha: new Date().getTime()
     }
+    // socket.emit('enviar-mensaje',payload)
+
+    // HAY UN TERCER ELEMENTO EN EL EMIT, CALLBACK
     socket.emit('enviar-mensaje',payload)
 });

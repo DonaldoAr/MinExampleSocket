@@ -72,12 +72,15 @@ class Server {
             // console.log("Cliente conectado", socket.id);
 
             socket.on('disconnect', ()=>{
-                console.log("Client disconect");
+                // console.log("Client disconect");
             });
 
             socket.on('enviar-mensaje', ( payload)=>{
                 // console.log(payload); // Ok
-                this.io.emit('enviar-mensaje', payload)
+                // this.io.emit('enviar-mensaje', payload)
+
+                const id = 123456;
+
             })
         });
     }
