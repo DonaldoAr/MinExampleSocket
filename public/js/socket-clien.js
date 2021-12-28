@@ -46,5 +46,8 @@ btnEnviar.addEventListener('click',()=>{
     // socket.emit('enviar-mensaje',payload)
 
     // HAY UN TERCER ELEMENTO EN EL EMIT, CALLBACK
-    socket.emit('enviar-mensaje',payload)
+    socket.emit('enviar-mensaje',payload, ( id )=>{
+        console.log("Desde el server", id);
+
+    });
 });

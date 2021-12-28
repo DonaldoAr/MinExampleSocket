@@ -75,11 +75,13 @@ class Server {
                 // console.log("Client disconect");
             });
 
-            socket.on('enviar-mensaje', ( payload)=>{
+            socket.on('enviar-mensaje', ( payload, callback)=>{
                 // console.log(payload); // Ok
                 // this.io.emit('enviar-mensaje', payload)
 
                 const id = 123456;
+                // CUANDO TODO TERMINO YA SEA DE MANERA CORRECTA O FALLIDA SE EJECUTA EL CALLBACK
+                callback( {id, fecha: new Date().getTime()});
 
             })
         });
