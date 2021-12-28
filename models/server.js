@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { Socket } = require('socket.io');
 const { SocketAddress } = require('net');
+const { socketController } = require('../sockets/controllerSockets');
 
 
 
@@ -67,24 +68,7 @@ class Server {
     }
 
     sockets(){
-        this.io.on('connection', socket=>{
-            // LOS SOCKETS TIENEN TAMBIEN TIENE UN ID DE IDENTIFICACION
-            // console.log("Cliente conectado", socket.id);
-
-            socket.on('disconnect', ()=>{
-                // console.log("Client disconect");
-            });
-
-            socket.on('enviar-mensaje', ( payload, callback)=>{
-                // console.log(payload); // Ok
-                // this.io.emit('enviar-mensaje', payload)
-
-                const id = 123456;
-                // CUANDO TODO TERMINO YA SEA DE MANERA CORRECTA O FALLIDA SE EJECUTA EL CALLBACK
-                callback( {id, fecha: new Date().getTime()});
-
-            })
-        });
+        this.io.on('connection', socketController );
     }
 
     listen() {
